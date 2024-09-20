@@ -71,8 +71,15 @@ jobs:
         dotnet build -f:net8.0-android --configuration Release
         dotnet pack  
         dotnet nuget push ${{ github.workspace }}/*nupkg --source https://api.nuget.org/v3/index.json --api-key ${API_KEY} --skip-duplicate
+        cd ${{ github.workspace }}
+        ARTIFACT_PATHNAME=$(ls *.nupkg | head -n 1)
+        ARTIFACT_NAME=$(basename $ARTIFACT_PATHNAME)
+        echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
+        echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
+      
       env:
         API_KEY: ${{ secrets.API_KEY }}
+
 
     - name: release
       uses: actions/create-release@v1
@@ -94,5 +101,5 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ${{ github.workspace }}
-        asset_name: ${{ env.ASSET_NAME }}
+        asset_name: ${{ env.ARTIFACT_NAME }}
         asset_content_type: application/zip
