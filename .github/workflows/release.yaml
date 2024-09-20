@@ -50,7 +50,7 @@ jobs:
          mv ./SDK-2.0.1/com/cielo/lio/order-manager/2.0.1/order-manager-2.0.1.aar ${{ github.workspace }}/src/CieloLio.NET/Jars/order-manager.aar
          cd ~ && wget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
          touch nuget
-         echo "'nuget.exe' $@ &" >> nuget
+         echo "./nuget.exe $@ &" >> nuget
          chmod +x nuget
     - name: Restore
       run: |
@@ -62,7 +62,9 @@ jobs:
           cd ${{ github.workspace }}/src/CieloLio.NET/
           dotnet build -t:InstallAndroidDependencies -f:net8.0-android -p:AndroidSdkDirectory="${HOME}/Library/Android/sdk" -p:JavaSdkDirectory="${HOME}/Library/Java" -p:AcceptAndroidSDKLicenses=True --configuration Release --no-restore
           cd ~
-          ./nuget pack ${{ github.workspace }}/src/CieloLio.NET/CieloLio.NET.nuspec
+          dotnet nuget pack ${{ github.workspace }}/src/CieloLio.NET/CieloLio.NET.nuspec
+          ls
+          cd ${{ github.workspace }}
           ls
 
     - name: Get Name of Artifact
