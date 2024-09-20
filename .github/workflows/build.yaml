@@ -61,5 +61,6 @@ jobs:
     - name: Build
       run: |
           cd ${{ github.workspace }}/src/CieloLio.NET/
-          dotnet build --configuration Release --no-restore
+          dotnet build -t:InstallAndroidDependencies -f:net8.0-android -p:AndroidSdkDirectory="${HOME}/Library/Android/sdk" -p:JavaSdkDirectory="${HOME}/Library/Java" -p:AcceptAndroidSDKLicenses=True --configuration Release --no-restore
+          
        
