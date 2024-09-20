@@ -43,12 +43,15 @@ jobs:
     - name: Download Cielo Android SDK
       run: |
          sudo apt-get update
-         sudo apt-get install -y curl unzip
+         sudo apt-get install -y curl unzip wget 
          curl https://desenvolvedores.cielo.com.br/api-portal/sites/default/files/ctools/SDK-2.0.1.zip -o cielo.zip
          unzip cielo.zip
          mkdir -p ${{ github.workspace }}/src/CieloLio.NET/Jars
          mv ./SDK-2.0.1/com/cielo/lio/order-manager/2.0.1/order-manager-2.0.1.aar ${{ github.workspace }}/src/CieloLio.NET/Jars/order-manager.aar
-         
+         cd ~ && wget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+         touch nuget
+         echo "'nuget.exe' $@ &" >> nuget
+         chmod +x nuget
     - name: Restore
       run: |
           cd ${{ github.workspace }}/src/CieloLio.NET/
@@ -58,10 +61,13 @@ jobs:
       run: |
           cd ${{ github.workspace }}/src/CieloLio.NET/
           dotnet build -t:InstallAndroidDependencies -f:net8.0-android -p:AndroidSdkDirectory="${HOME}/Library/Android/sdk" -p:JavaSdkDirectory="${HOME}/Library/Java" -p:AcceptAndroidSDKLicenses=True --configuration Release --no-restore
-          dotnet pack
+          cd ~
+          ./nuget pack ${{ github.workspace }}/src/CieloLio.NET/CieloLio.NET.nuspec
+          ls
 
     - name: Get Name of Artifact
       run: |
+        cd ~
         ARTIFACT_PATHNAME=$(find *.nupkg)
         ARTIFACT_NAME=$(basename $ARTIFACT_PATHNAME)
         echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
