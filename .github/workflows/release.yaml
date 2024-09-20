@@ -72,8 +72,8 @@ jobs:
         dotnet pack  
         dotnet nuget push ${{ github.workspace }}/*nupkg --source https://api.nuget.org/v3/index.json --api-key ${API_KEY} --skip-duplicate
         cd ${{ github.workspace }}
-        ARTIFACT_PATHNAME=$(ls *.nupkg | head -n 1)
-        ARTIFACT_NAME=$(basename $ARTIFACT_PATHNAME)
+        ARTIFACT_PATHNAME=${{ env.ARTIFACT_NAME }}
+        ARTIFACT_NAME=$(ls *.nupkg | head -n 1)
         echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
         echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
       
