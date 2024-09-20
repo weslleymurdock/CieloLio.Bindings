@@ -72,10 +72,10 @@ jobs:
         dotnet pack  
         dotnet nuget push ${{ github.workspace }}/*nupkg --source https://api.nuget.org/v3/index.json --api-key ${API_KEY} --skip-duplicate
         cd ${{ github.workspace }}
-        ARTIFACT_PATHNAME=${{ github.workspace }}
+        ARTIFACT_PATH=${{ github.workspace }}
         ARTIFACT_NAME=$(ls *.nupkg | head -n 1)
         echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
-        echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
+        echo "ARTIFACT_PATH=${ARTIFACT_PATH}/${ARTIFACT_NAME}" >> $GITHUB_ENV
       
       env:
         API_KEY: ${{ secrets.API_KEY }}
@@ -94,11 +94,13 @@ jobs:
      
     
     - name: upload .nupkg 
-      uses: actions/upload-release-asset@v1
+      uses: svenstaro/upload-release-action@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ env.ARTIFACT_PATH }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ${{ env.ARTIFACT_PATH }}
         asset_name: ${{ env.ARTIFACT_NAME }}
-        asset_content_type: application/zip
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "Release of tag ${{ github.ref_name }}"
