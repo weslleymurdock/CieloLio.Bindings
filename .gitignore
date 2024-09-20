@@ -5,3 +5,5 @@
 /src/CieloLio.NET/bin
 /src/CieloLio.NET/obj
 /src/.vs
+*.nupkg
+*.sqlite

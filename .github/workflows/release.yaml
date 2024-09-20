@@ -59,4 +59,36 @@ jobs:
           cd ${{ github.workspace }}/src/CieloLio.NET/
           dotnet build -t:InstallAndroidDependencies -f:net8.0-android -p:AndroidSdkDirectory="${HOME}/Library/Android/sdk" -p:JavaSdkDirectory="${HOME}/Library/Java" -p:AcceptAndroidSDKLicenses=True --configuration Release --no-restore
        
+    - name: Get Name of Artifact
+      run: |
+        ARTIFACT_PATHNAME=$(ls *.nupkg | head -n 1)
+        ARTIFACT_NAME=$(basename $ARTIFACT_PATHNAME)
+        echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
+        echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
+
+    - name: Publish
+      run: dotnet nuget push ${{ env.ARTIFACT_NAME }} --source https://api.nuget.org/v3/index.json --api-key ${API_KEY} --skip-duplicate
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
+
+    - name: release
+      uses: actions/create-release@v1
+      id: create_release
+      with:
+        draft: false
+        prerelease: false
+        release_name: ${{ github.ref }}
+        tag_name: ${{ github.ref }}
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     
     
+    - name: upload .nupkg 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ env.ARTIFACT_PATHNAME }}
+        asset_name: ${{ env.ARTIFACT_NAME }}
+        asset_content_type: application/zip

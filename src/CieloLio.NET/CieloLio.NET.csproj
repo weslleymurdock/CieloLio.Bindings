@@ -1,8 +1,41 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0-android</TargetFramework>
-    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+    <TargetFramework>net8.0-android27.0</TargetFramework>
+    <SupportedOSPlatformVersion>22</SupportedOSPlatformVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>cielo.ico</ApplicationIcon>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Cielo Lio SDK for .NET</Title>
+    <Version>2.0.1</Version>
+    <Authors>Weslley Luiz</Authors>
+    <Company>Digital TI</Company>
+    <Description>
+      CieloLio.NET
+
+      This project is a port of Cielo LIO SDK built for kotlin in order to build solutions to Cielo LIO platform using .NET MAUI
+      Android only
+    </Description>
+    <PackageProjectUrl>https://github.com/weslleymurdock/CieloLio.Bindings</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/weslleymurdock/CieloLio.Bindings</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Cielo;Lio;SDK;cielo;lio;sdk;.net;android;maui;</PackageTags>
+    <PackageReleaseNotes>First Release</PackageReleaseNotes>
+    <PackageOutputPath>..\..\</PackageOutputPath>
+    <PackageIcon>cielo.png</PackageIcon>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="cielo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\cielo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
