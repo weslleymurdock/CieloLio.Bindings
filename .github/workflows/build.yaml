@@ -1,13 +1,6 @@
 name: "Build"
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '**/*.md'
-      - '**/*.gitignore'
-      - '**/*.gitattributes'
   pull_request:
     branches:
       - main

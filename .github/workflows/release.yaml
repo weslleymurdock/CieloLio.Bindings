@@ -54,14 +54,15 @@ jobs:
           cd ${{ github.workspace }}/src/CieloLio.NET/
           dotnet restore
 
-    - name: Build
+    - name: Build and Pack
       run: |
           cd ${{ github.workspace }}/src/CieloLio.NET/
           dotnet build -t:InstallAndroidDependencies -f:net8.0-android -p:AndroidSdkDirectory="${HOME}/Library/Android/sdk" -p:JavaSdkDirectory="${HOME}/Library/Java" -p:AcceptAndroidSDKLicenses=True --configuration Release --no-restore
-       
+          dotnet pack
+
     - name: Get Name of Artifact
       run: |
-        ARTIFACT_PATHNAME=$(ls *.nupkg | head -n 1)
+        ARTIFACT_PATHNAME=$(find *.nupkg)
         ARTIFACT_NAME=$(basename $ARTIFACT_PATHNAME)
         echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
         echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
