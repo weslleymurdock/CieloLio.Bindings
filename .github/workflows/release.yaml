@@ -37,7 +37,7 @@ jobs:
     # if not using any workloads (e.g, Aspire, Wasm, Maui), remove this step
     - name: Restore workloads
       run: |
-          cd ${{ github.workspace }}/src/CieloLio.Bindings/src/CieloLio.NET/
+          cd ${{ github.workspace }}/src/CieloLio.NET/
           dotnet workload restore
    
     - name: Download Cielo Android SDK
@@ -46,17 +46,17 @@ jobs:
          sudo apt-get install -y curl unzip
          curl https://desenvolvedores.cielo.com.br/api-portal/sites/default/files/ctools/SDK-2.0.1.zip -o cielo.zip
          unzip cielo.zip
-         mkdir -p ${{ github.workspace }}/src/CieloLio.Bindings/src/CieloLio.NET/Jars
-         mv ./SDK-2.0.1/com/cielo/lio/order-manager/2.0.1/order-manager-2.0.1.aar ${{ github.workspace }}/src/CieloLio.Bindings/src/CieloLio.NET/Jars/order-manager.aar
+         mkdir -p ${{ github.workspace }}/src/CieloLio.NET/Jars
+         mv ./SDK-2.0.1/com/cielo/lio/order-manager/2.0.1/order-manager-2.0.1.aar ${{ github.workspace }}/src/CieloLio.NET/Jars/order-manager.aar
          
     - name: Restore
       run: |
-          cd ${{ github.workspace }}/src/CieloLio.Bindings/src/CieloLio.NET/
+          cd ${{ github.workspace }}/src/CieloLio.NET/
           dotnet restore
 
     - name: Build
       run: |
-          cd ${{ github.workspace }}/src/CieloLio.Bindings/src/CieloLio.NET/
+          cd ${{ github.workspace }}/src/CieloLio.NET/
           dotnet build --configuration Release --no-restore
        
     
