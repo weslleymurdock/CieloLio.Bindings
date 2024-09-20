@@ -54,32 +54,28 @@ jobs:
     - name: Download Cielo Android SDK
       run: |
          sudo apt-get update
-         sudo apt-get install -y curl unzip wget 
+         sudo apt-get install -y curl unzip  
          curl https://desenvolvedores.cielo.com.br/api-portal/sites/default/files/ctools/SDK-2.0.1.zip -o cielo.zip
          unzip cielo.zip
          mkdir -p ${{ github.workspace }}/src/CieloLio.NET/Jars
          mv ./SDK-2.0.1/com/cielo/lio/order-manager/2.0.1/order-manager-2.0.1.aar ${{ github.workspace }}/src/CieloLio.NET/Jars/order-manager.aar
-         #cd ~ && wget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-         #touch nuget
-         #echo "./nuget.exe $@ &" >> nuget
-         #chmod +x nuget
-    
+          
     - name: Restore
       run: |
-          cd ${{ github.workspace }}/src/CieloLio.NET/
-          dotnet restore
+        cd ${{ github.workspace }}/src/CieloLio.NET/
+        dotnet restore
 
     - name: Build and Pack
       run: |
-          cd ${{ github.workspace }}/src/CieloLio.NET/
-          dotnet build -f:net8.0-android --configuration Release
-          dotnet pack 
-          $ARTIFACT_PATHNAME=echo $(ls *nupkg | head -n 1)
-          ARTIFACT_NAME=$(basename $ARTIFACT_PATHNAME)
-          echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
-          echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
-          cd ${{  }}
-          dotnet nuget push ${{ env.ARTIFACT_NAME }} --source https://api.nuget.org/v3/index.json --api-key ${API_KEY} --skip-duplicate
+        cd ${{ github.workspace }}/src/CieloLio.NET/
+        dotnet build -f:net8.0-android --configuration Release
+        dotnet pack 
+        cd ${{ github.workspace }}
+        ARTIFACT_PATHNAME=echo $(ls *nupkg | head -n 1)
+        ARTIFACT_NAME=$(basename $ARTIFACT_PATHNAME)
+        echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
+        echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
+        dotnet nuget push ${{ env.ARTIFACT_NAME }} --source https://api.nuget.org/v3/index.json --api-key ${API_KEY} --skip-duplicate
       env:
         API_KEY: ${{ secrets.API_KEY }}
 
