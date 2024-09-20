@@ -49,7 +49,9 @@ jobs:
          mv ./SDK-2.0.1/com/cielo/lio/order-manager/2.0.1/order-manager-2.0.1.aar ${{ github.workspace }}/src/CieloLio.Bindings/src/CieloLio.NET/Jars/order-manager.aar
          
     - name: Restore workloads
-      run: dotnet workload restore
+      run: |
+          cd ${{ github.workspace }}/src/CieloLio.Bindings/src/CieloLio.NET/
+          dotnet workload restore
 
     - name: Restore
       run: dotnet restore

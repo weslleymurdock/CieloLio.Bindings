@@ -36,7 +36,9 @@ jobs:
 
     # if not using any workloads (e.g, Aspire, Wasm, Maui), remove this step
     - name: Restore workloads
-      run: dotnet workload restore
+      run: |
+          cd ${{ github.workspace }}/src/CieloLio.Bindings/src/CieloLio.NET/
+          dotnet workload restore
    
     - name: Download Cielo Android SDK
       run: |
@@ -48,9 +50,13 @@ jobs:
          mv ./SDK-2.0.1/com/cielo/lio/order-manager/2.0.1/order-manager-2.0.1.aar ${{ github.workspace }}/src/CieloLio.Bindings/src/CieloLio.NET/Jars/order-manager.aar
          
     - name: Restore
-      run: dotnet restore
+      run: |
+          cd ${{ github.workspace }}/src/CieloLio.Bindings/src/CieloLio.NET/
+          dotnet restore
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: |
+          cd ${{ github.workspace }}/src/CieloLio.Bindings/src/CieloLio.NET/
+          dotnet build --configuration Release --no-restore
        
     
