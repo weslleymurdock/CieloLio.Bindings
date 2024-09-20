@@ -1,0 +1,12 @@
+﻿<metadata>
+  <attr path="/api/package[@name='cielo.sdk.order.payment']/interface[@name='PaymentListener']/method[@name='onCancel' and count(parameter)=0]" name="eventName">PaymentCancel</attr>
+  <attr path="/api/package[@name='cielo.sdk.order.payment']/interface[@name='PaymentListener']/method[@name='onError' and count(parameter)=1 and parameter[1][@type='cielo.sdk.order.payment.PaymentError']]" name="eventName">PaymentError</attr>
+
+  <attr path="/api/package[@name='cielo.sdk.servicesintent.model']/class[@name='MerchantDataResponse.CREATOR']/method[@name='createFromParcel' and count(parameter)=1 and parameter[1][@type='android.os.Parcel']]" name="managedReturn">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='cielo.sdk.servicesintent.model']/class[@name='PrimaryProductResponse.CREATOR']/method[@name='createFromParcel' and count(parameter)=1 and parameter[1][@type='android.os.Parcel']]" name="managedReturn">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='cielo.sdk.servicesintent.model']/class[@name='SecondaryProductResponse.CREATOR']/method[@name='createFromParcel' and count(parameter)=1 and parameter[1][@type='android.os.Parcel']]" name="managedReturn">Java.Lang.Object</attr>
+
+  <attr path="/api/package[@name='cielo.sdk.servicesintent.model']/class[@name='MerchantDataResponse.CREATOR']/method[@name='newArray' and count(parameter)=1 and parameter[1][@type='int']]" name="managedReturn">Java.Lang.Object[]</attr>
+  <attr path="/api/package[@name='cielo.sdk.servicesintent.model']/class[@name='PrimaryProductResponse.CREATOR']/method[@name='newArray' and count(parameter)=1 and parameter[1][@type='int']]" name="managedReturn">Java.Lang.Object[]</attr>
+  <attr path="/api/package[@name='cielo.sdk.servicesintent.model']/class[@name='SecondaryProductResponse.CREATOR']/method[@name='newArray' and count(parameter)=1 and parameter[1][@type='int']]" name="managedReturn">Java.Lang.Object[]</attr>
+</metadata>

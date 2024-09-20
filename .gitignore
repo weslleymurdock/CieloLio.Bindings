@@ -1,0 +1,7 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/src/CieloLio.NET/bin
+/src/CieloLio.NET/obj
+/src/.vs
