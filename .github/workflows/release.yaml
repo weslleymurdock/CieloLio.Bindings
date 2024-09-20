@@ -45,7 +45,7 @@ jobs:
          curl https://desenvolvedores.cielo.com.br/api-portal/sites/default/files/ctools/SDK-2.0.1.zip -o cielo.zip
          unzip cielo.zip
          mkdir -p ${{ github.workspace }}/src/CieloLio.Bindings/src/CieloLio.NET/Jars
-         mv SDK-2.0.1/com/cielo/lio/order-manager/order-manager.aar ${{ github.workspace }}/src/CieloLio.Bindings/src/CieloLio.NET/Jars/order-manager.aar
+         mv ./SDK-2.0.1/com/cielo/lio/order-manager/2.0.1/order-manager.aar ${{ github.workspace }}/src/CieloLio.Bindings/src/CieloLio.NET/Jars/order-manager.aar
          
     - name: Restore
       run: dotnet restore
