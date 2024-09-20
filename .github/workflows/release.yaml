@@ -96,10 +96,9 @@ jobs:
     - name: upload .nupkg 
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ASSET_NAME: $(ls ${{ github.workspace }}/*nupkg)
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ${{ github.workspace }}
-        asset_name: ${{ github.workspace }}*nuokg
+        asset_name: ${{ env.ARTIFACT_NAME }}
         asset_content_type: application/zip
