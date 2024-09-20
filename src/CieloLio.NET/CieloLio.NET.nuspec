@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>CieloLio.SDK.NET.Bindings</id>
+    <version>2.0.1</version>
+    <title>Cielo Lio SDK for .NET</title>
+    <authors>Weslley Luiz</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <icon>..\..\cielo.png</icon>
+    <projectUrl>https://github.com/weslleymurdock/CieloLio.Bindings</projectUrl>
+    <description>
+      CieloLio.NET Bindings
+
+      This project is a port of Cielo LIO SDK built for kotlin in order to build solutions to Cielo LIO platform using .NET MAUI.
+      Android only
+    </description>
+    <releaseNotes>First Release</releaseNotes>
+    <readme>docs\README.md</readme>
+    <tags>Cielo Lio SDK cielo lio sdk .net android maui </tags>
+  </metadata>
+  <files>
+    
+    <file src="..\..\README.md" target="docs\" />
+    <file src="bin\Release\net8.0-android\*.dll" target="lib/net8.0-android/" />
+    <file src="bin\Release\net8.0-android\*.pdb" target="lib/net8.0-android/" />
+    <file src="bin\Release\net8.0-android\*.xml" target="lib/net8.0-android/" />
+    <file src="bin\Release\net8.0-android\*.aar" target="lib/net8.0-android/" />
+  </files>
+</package>

@@ -5,16 +5,17 @@
     <TargetPlatformVersion>27</TargetPlatformVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>cielo.ico</ApplicationIcon>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <ApplicationIcon>..\..\cielo.ico</ApplicationIcon>
+    <PackageId>CieloLio.SDK.NET.Bindings</PackageId>
     <Title>Cielo Lio SDK for .NET</Title>
     <Version>2.0.1</Version>
     <Authors>Weslley Luiz</Authors>
     <Company>Digital TI</Company>
+    <Product>$(AssemblyName)</Product>
     <Description>
-      CieloLio.NET
+      CieloLio.NET Bindings
 
-      This project is a port of Cielo LIO SDK built for kotlin in order to build solutions to Cielo LIO platform using .NET MAUI
+      This project is a port of Cielo LIO SDK built for kotlin in order to build solutions to Cielo LIO platform using .NET MAUI.
       Android only
     </Description>
     <PackageProjectUrl>https://github.com/weslleymurdock/CieloLio.Bindings</PackageProjectUrl>
@@ -26,9 +27,7 @@
     <PackageOutputPath>..\..\</PackageOutputPath>
     <PackageIcon>cielo.png</PackageIcon>
   </PropertyGroup>
-  <ItemGroup>
-    <Content Include="cielo.ico" />
-  </ItemGroup>
+   
   <ItemGroup>
     <None Include="..\..\cielo.png">
       <Pack>True</Pack>
