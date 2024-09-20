@@ -74,9 +74,11 @@ jobs:
           cd ${{ github.workspace }}/src/CieloLio.NET/
           dotnet build -f:net8.0-android --configuration Release
           dotnet pack 
-          echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
+          $ARTIFACT_PATHNAME=echo $(ls *nupkg | head -n 1)
           ARTIFACT_NAME=$(basename $ARTIFACT_PATHNAME)
           echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
+          echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
+          cd ${{  }}
           dotnet nuget push ${{ env.ARTIFACT_NAME }} --source https://api.nuget.org/v3/index.json --api-key ${API_KEY} --skip-duplicate
       env:
         API_KEY: ${{ secrets.API_KEY }}
