@@ -62,7 +62,7 @@ jobs:
           cd ${{ github.workspace }}/src/CieloLio.NET/
           dotnet build -t:InstallAndroidDependencies -f:net8.0-android -p:AndroidSdkDirectory="${HOME}/Library/Android/sdk" -p:JavaSdkDirectory="${HOME}/Library/Java" -p:AcceptAndroidSDKLicenses=True --configuration Release --no-restore
           cd ~
-          dotnet nuget pack ${{ github.workspace }}/src/CieloLio.NET/CieloLio.NET.nuspec
+          dotnet pack ${{ github.workspace }}/src/CieloLio.NET/CieloLio.NET.nuspec
           ls
           cd ${{ github.workspace }}
           ls
