@@ -92,6 +92,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ env.ARTIFACT_PATHNAME }}
-        asset_name: ${{ env.ARTIFACT_NAME }}
+        asset_path: ${{ github.workspace }}
+        asset_name: $(ls ${{ github.workspace }}/*nupkg)
         asset_content_type: application/zip
